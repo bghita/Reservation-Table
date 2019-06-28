@@ -31,8 +31,8 @@
                         <h3><strong>Table Reservation Request</strong></h3>
                     </div>
                     <div class="card-body">
+                            <div id="ourtarget">
                         <form method="POST" role="form">
-
                             <div class="form-group">
                                 <label for="name">ID</label>
                                 <input type="text" class="form-control" id="name">
@@ -52,16 +52,15 @@
                                 <label for="force-points">Phone Number</label>
                                 <input type="text" class="form-control" id="force-points">
                             </div>
-
+                        </div>
                         </form>
                         <br>
                         <div class="text-right">
                             <button type="submit" class="btn btn-primary btn-md" id="add-btn"><span
-                                    class="fa fa-fire"></span> Add to the Force</button>
+                                    class="fa fa-fire"></span> Add Table</button>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -70,18 +69,24 @@
         // Question: What does this code do?
         $("#add-btn").on("click", function (event) {
             event.preventDefault();
-            var newCharacter = {
-                name: $("#name").val().trim(),
-                role: $("#role").val().trim(),
-                age: $("#age").val().trim(),
-                forcePoints: $("#force-points").val().trim()
+            var newTable = {
+                customerid: $("#customerid").val().trim(),
+                customername: $("#customername").val().trim(),
+                customeremail: $("#customeremail").val().trim(),
+                customerphone: $("#customerphone").val().trim()
             };
 
             // Question: What does this code do??
-            $.post("/api/characters", newCharacter)
+            $.post("/api/table", newTable)
                 .then(function (data) {
                     console.log("add.html", data);
-                    alert("Adding character...");
+
+                    
+                    var mydiv = $("<div>") // <div></div>
+                    mydiv.text(ourtarget)  // <div>asdfasdfsdf</div>
+                    $("#stats").append(mydiv)
+
+                    alert("Adding Reservation...");
                 });
         });
     </script>
